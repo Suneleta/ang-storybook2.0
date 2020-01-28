@@ -1,0 +1,245 @@
+﻿//
+//    COMPONENTS
+//    @index vy-cms7 / components / modal
+//
+//    CLASS STRUCTURE ----- *** -----
+//
+//    tfm-modal--bg                         : background modal container
+//    tfm-modal                             : modal block 
+//    tfm-modal--header                     : modal header 
+//    tfm-modal--header_title               : modal header title
+//    tfm-modal--header_close-icon          : close icon
+//    tfm-modal--body                       : modal body content
+//    tfm-modal--body_description           : contains body content (image and text)
+//    tfm-modal--body_description-content   : text element
+//    tfm-modal--body_description-image     : image element
+//    tfm-modal--footer                     : modal footer
+//    tfm-modal--footer_close-button        : modal footer (button close element on mobile)
+//    modal-open                            : switch class on body for add styles to modal correct behavior
+//    activate-modal                        : modifier class implemented by DEV
+// --------------------------------------------------
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+.modal-open {
+    overflow: hidden;
+}
+
+.activate-modal {
+    cursor: pointer;
+}
+
+.tfm-modal--bg {
+    background: rgba(0, 0, 0, 0.6);
+    cursor: default;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.tfm-modal {
+    animation: fadeIn 0.3s ease-in-out both;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #333;
+    border-radius: 5px;
+    max-height: calc(100vh - 128px);
+    margin: 64px auto;
+    position: relative;
+    width: 616px;
+    overflow: hidden;
+    @include only_ie-11 { // media querie for IE 11 bugs
+        max-height: calc(20vh - 128px);
+    }
+    @media only screen and (min-width: 768px)  {
+        justify-content:center;
+        border: 0;
+        height: 100%;
+        width: 604px;
+    }
+
+
+
+}
+
+.tfm-modal--header {
+    background:#333 ;
+    border-radius: 5px 5px 0 0;    
+    padding:12px 24px;
+    position: fixed;
+    width: 614px;
+    @media only screen and (min-width: 768px) {
+        border: 1px solid #333;
+        position: initial;
+        width: 604px;
+    }
+
+
+    &_title {
+        color: white;
+        display: inline-block;
+        font-weight: bold;
+        margin: 0;
+        vertical-align: top; // for align vertically with icon (no flexbox)
+        width: 92%;
+        font-size: 14px;
+        
+    }
+
+    &_close-icon {
+        color: white;
+        cursor: pointer;
+        display: inline-block;
+        &:before {
+            color: white;
+            font-size: 18px;
+        }
+
+    }
+}
+
+.tfm-modal--body {
+    background: white;
+    margin-top: 46px; // header is fixed when modal has scroll so, we need to add so much pixesl as header height has.
+
+
+
+    
+    @media only screen and (min-width: 768px)  {
+        border-radius: 0 0 5px 5px;
+        border: 1px solid #333;
+        margin-top: 0;
+    }
+
+
+    &_content {
+        padding: 0 12px 0 24px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        margin-right: 12px;
+        padding: 12px;
+        padding-bottom: 32px;
+        overflow-y: auto;
+        max-height: calc(100vh - 284px);
+        
+
+    }
+
+
+    &_description {
+        display: flex;
+        align-items: flex-start;
+
+
+
+        &-image {
+            border-radius: 5px;
+
+        }
+    }
+    &_description-image {
+        height: 150px;
+        width: 100%;
+    }
+
+    .list--default { // tfm-wrapper container isn't here so...
+        li {
+            margin-bottom: 10px;
+        }
+    }
+
+    p:last-child{
+        margin-bottom: 0;
+    }
+
+    //button for close behavior on mobile
+    &_close-button {
+        margin: 0;
+        margin-top: 12px;
+    }
+}
+
+.tfm-modal--footer {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 24px;
+    margin-top: -24px;
+
+    @media only screen and (min-width: 768px)  {
+        display: none;
+    }
+
+
+    &_close-button {
+        border-radius: 0 0 5px 5px;
+        background: white;
+        margin: 0;
+        display: flex;
+        flex-basis: 100%;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        a{
+            min-width: 0;
+            margin: 0;
+            flex: 1;
+
+            @media only screen and (min-width: 768px)  {
+                max-width: 222px;
+            }
+
+            + a{
+                margin-left: 12px;
+            }
+        }
+    }
+
+    &.visibleAll{
+        display: flex;
+    }
+}
+
+.btn--solid {
+    background-color: #fc0;
+    color: #4d4d4d;
+    border: 0 none;
+    &:hover {
+        background-color: #e5b700;
+        color: #4d4d4d;
+    }
+    display: inline-block;
+    min-height: 40px;
+    min-width: 222px;
+    text-align: center;
+    font-family: "NunitoSans-Semibold",Calibri,Verdana,sans-serif;
+    font-size: 16px;
+    line-height: 1em;
+    border-radius: 20px;
+    margin: auto;
+    padding: 12px 24px 10px 24px;
+    text-decoration: none;
+    cursor: pointer;
+
+}

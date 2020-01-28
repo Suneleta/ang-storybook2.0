@@ -1,0 +1,9 @@
+﻿<div class="tfm-modal">
+    <p style= "text-align: center;">{{bodyText}}</p>
+    <button (click)="openModal('tfm-modal')" class="btn--solid">Open Modal</button> 
+</div>
+
+<tfm-modal id="tfm-modal">
+    <h1>A Custom Modal!</h1>
+    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+s</tfm-modal>
